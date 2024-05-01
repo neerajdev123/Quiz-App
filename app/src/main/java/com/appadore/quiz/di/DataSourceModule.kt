@@ -1,6 +1,7 @@
 package com.appadore.quiz.di
 
 import com.appadore.quiz.data.StaticQuestionStore
+import com.appadore.quiz.data.mapper.QuestionResponseMapper
 import com.appadore.quiz.model.QuestionResponse
 import com.google.gson.Gson
 import dagger.Module
@@ -18,7 +19,7 @@ object DataSourceModule {
     @Provides
     @Singleton
     fun provideStaticDataSource(): StaticQuestionStore {
-        return StaticQuestionStore(provideStaticResponse())
+        return StaticQuestionStore(provideStaticResponse(), QuestionResponseMapper())
     }
 
     @Provides
