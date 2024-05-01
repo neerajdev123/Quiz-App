@@ -16,7 +16,9 @@ import androidx.navigation.fragment.findNavController
 import com.appadore.quiz.R
 import com.appadore.quiz.databinding.FragmentQuizBinding
 import com.appadore.quiz.viewmodel.QuizViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class QuizFragment : Fragment() {
 
     private var binding : FragmentQuizBinding? = null

@@ -5,7 +5,9 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.appadore.quiz.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class QuizActivity : AppCompatActivity(R.layout.activity_main) {
 
     private lateinit var navController: NavController
