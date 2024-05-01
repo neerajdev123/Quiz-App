@@ -1,15 +1,17 @@
 package com.appadore.quiz.view
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.appadore.quiz.R
-import com.appadore.quiz.databinding.FragmentHomeBinding
 import com.appadore.quiz.databinding.FragmentQuizBinding
 import com.appadore.quiz.viewmodel.QuizViewModel
 
@@ -46,6 +48,12 @@ class QuizFragment : Fragment() {
         sharedViewModel.currentQuestion.observe(viewLifecycleOwner) {
             binding?.apply {
                 this.txtQn.text = it?.question
+
+                handleOptionBg(1, -1)
+                handleOptionBg(2, -1)
+                handleOptionBg(3, -1)
+                handleOptionBg(4, -1)
+
                 this.btnOption1.text = it?.option1
                 this.btnOption2.text = it?.option2
                 this.btnOption3.text = it?.option3
@@ -54,23 +62,37 @@ class QuizFragment : Fragment() {
         }
 
         sharedViewModel.questionNumber.observe(viewLifecycleOwner) {
-            binding?.txtQnNo?.text = "$it / $totalQuestions"
+            val delay = if(it == 1) 0L else 5000L
+            Handler(Looper.getMainLooper()).postDelayed({
+                binding?.txtQnNo?.text = "$it / $totalQuestions"
+                sharedViewModel.startTimer()
+            }, delay)
         }
 
         sharedViewModel.userSelectedAnswer.observe(viewLifecycleOwner){
             selectedAnswer = it
+            handleOptionBg(it, 1)
         }
 
         sharedViewModel.correctAnswer.observe(viewLifecycleOwner){
             if(it != null) {
+                sharedViewModel.stopTimer()
                 if (it == selectedAnswer) {
-                    Toast.makeText(activity, "Correct", Toast.LENGTH_SHORT).show()
                     sharedViewModel.saveQuestionAnswer(true)
+                    handleOptionBg(it, 2)
                 } else {
                     sharedViewModel.saveQuestionAnswer(false)
+                    handleOptionBg(selectedAnswer, 3)
+                    handleOptionBg(it, 2)
                 }
-                sharedViewModel.getCurrentQuestion()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    sharedViewModel.getCurrentQuestion()
+                }, 5000L)
             }
+        }
+
+        sharedViewModel.countDownTime.observe(viewLifecycleOwner){
+            binding?.txtTimer?.text = it
         }
 
         sharedViewModel.lastQuestion.observe(viewLifecycleOwner){
@@ -101,6 +123,47 @@ class QuizFragment : Fragment() {
 
         binding?.btnSubmit?.setOnClickListener {
             sharedViewModel.submitAnswers()
+        }
+    }
+
+    private fun handleOptionBg(option : Int, mode : Int = 1){
+        when(option){
+            1 -> {
+                setBg(mode, binding?.btnOption1!!)
+            }
+
+            2 -> {
+                setBg(mode, binding?.btnOption2!!)
+            }
+
+            3 -> {
+                setBg(mode, binding?.btnOption3!!)
+            }
+
+            4 -> {
+                setBg(mode, binding?.btnOption4!!)
+            }
+        }
+    }
+
+    private fun setBg(mode : Int, view : AppCompatButton){
+        when (mode) {
+            1 -> {
+                view.setBackgroundDrawable(ResourcesCompat.getDrawable(resources,
+                    R.drawable.bg_option_select, null))
+            }
+            2 -> {
+                view.setBackgroundDrawable(ResourcesCompat.getDrawable(resources,
+                    R.drawable.bg_option_correct, null))
+            }
+            3 -> {
+                view.setBackgroundDrawable(ResourcesCompat.getDrawable(resources,
+                    R.drawable.bg_option_wrong, null))
+            }
+            else -> {
+               view.setBackgroundDrawable(ResourcesCompat.getDrawable(resources,
+                   R.drawable.bg_option_normal, null))
+            }
         }
     }
 

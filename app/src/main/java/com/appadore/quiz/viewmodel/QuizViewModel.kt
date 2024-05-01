@@ -1,5 +1,6 @@
 package com.appadore.quiz.viewmodel
 
+import android.os.CountDownTimer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,10 +27,23 @@ class QuizViewModel : ViewModel() {
     private val _lastQuestion = MutableLiveData<Boolean>()
     val lastQuestion: LiveData<Boolean> = _lastQuestion
 
-    private val _questionNumber = MutableLiveData<Int>(1)
+    private val _questionNumber = MutableLiveData(1)
     val questionNumber: LiveData<Int> = _questionNumber
 
+    private val _countDownTime = MutableLiveData("")
+    val countDownTime : LiveData<String> = _countDownTime
+
     private var correctAnswers = 0
+
+    private val timer = object: CountDownTimer(30000, 1000) {
+        override fun onTick(millisUntilFinished: Long) {
+            _countDownTime.value = (millisUntilFinished/1000L).toString()
+        }
+
+        override fun onFinish() {
+            checkAnswer(0)
+        }
+    }
 
     //fetch questions on view model init
     init{
@@ -81,6 +95,15 @@ class QuizViewModel : ViewModel() {
 
         getQuestions()
 
+    }
+
+    //set countdown timer, can be done in view as well, but handling here helps in orientation change
+    fun startTimer(){
+        timer.start()
+    }
+
+    fun stopTimer(){
+        timer.cancel()
     }
 
     private fun getQuestions(){

@@ -6,6 +6,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.QuizFragment">
 
+   <androidx.appcompat.widget.AppCompatImageView
+       android:layout_width="30dp"
+       android:layout_height="30dp"
+       android:id="@+id/img_timer"
+       android:src="@drawable/baseline_access_alarm_24"
+       android:layout_margin="32dp"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_timer"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toEndOf="@+id/img_timer"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

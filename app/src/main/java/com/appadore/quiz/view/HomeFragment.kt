@@ -1,6 +1,7 @@
 package com.appadore.quiz.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -33,7 +34,7 @@ class HomeFragment : Fragment() {
 
     private fun init(){
         binding?.btnStart?.setOnClickListener{
-            findNavController().navigate(R.id.action_homeFragment_to_quizFragment)
+            this.findNavController().navigate(R.id.action_homeFragment_to_quizFragment)
         }
 
         sharedViewModel.finalAnswer.observe(viewLifecycleOwner){
@@ -47,10 +48,8 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding?.btnRetake?.setOnClickListener {
-            binding?.btnStart?.visibility = View.VISIBLE
-            binding?.layoutScore?.visibility = View.GONE
-            sharedViewModel.reset()
+        binding?.btnExit?.setOnClickListener {
+            activity?.finish()
         }
     }
 
