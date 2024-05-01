@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.appadore.quiz.data.StaticQuestionStore
 import com.appadore.quiz.model.Question
+import com.appadore.quiz.repository.QuizRepository
+import com.appadore.quiz.repository.QuizRepositoryImpl
 import java.util.Calendar
 
 
@@ -41,6 +43,8 @@ class QuizViewModel : ViewModel() {
     private val _navigateToQuiz = MutableLiveData(false)
     val navigateToQuiz : LiveData<Boolean> = _navigateToQuiz
 
+    private var quizRepository : QuizRepository? = null
+
     private var correctAnswers = 0
 
     private val timer = object: CountDownTimer(30000, 1000) {
@@ -55,6 +59,7 @@ class QuizViewModel : ViewModel() {
 
     //fetch questions on view model init
     init{
+        quizRepository = QuizRepositoryImpl()
         getQuestions()
     }
 
@@ -148,7 +153,7 @@ class QuizViewModel : ViewModel() {
     }
 
     private fun getQuestions(){
-        _questions.value = StaticQuestionStore().questions
+        _questions.value = quizRepository?.getQuestions()
     }
 
 }
