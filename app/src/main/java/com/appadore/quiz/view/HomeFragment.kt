@@ -32,9 +32,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun init(){
-        binding?.btnStart?.setOnClickListener(View.OnClickListener {
+        binding?.btnStart?.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment_to_quizFragment)
-        })
+        }
 
         sharedViewModel.finalAnswer.observe(viewLifecycleOwner){
             if(it != null){
