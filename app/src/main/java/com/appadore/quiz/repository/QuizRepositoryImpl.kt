@@ -2,9 +2,12 @@ package com.appadore.quiz.repository
 
 import com.appadore.quiz.data.StaticQuestionStore
 import com.appadore.quiz.model.Question
+import javax.inject.Inject
 
-class QuizRepositoryImpl : QuizRepository {
+class QuizRepositoryImpl @Inject constructor(
+    private val staticDataSource: StaticQuestionStore
+) : QuizRepository {
     override fun getQuestions(): List<Question> {
-        return StaticQuestionStore().questions
+        return staticDataSource.questions
     }
 }

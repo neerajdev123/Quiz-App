@@ -10,8 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.appadore.quiz.R
 import com.appadore.quiz.databinding.FragmentHomeBinding
 import com.appadore.quiz.viewmodel.QuizViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var binding : FragmentHomeBinding? = null
