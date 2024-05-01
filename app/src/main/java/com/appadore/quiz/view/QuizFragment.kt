@@ -3,6 +3,7 @@ package com.appadore.quiz.view
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.appadore.quiz.R
 import com.appadore.quiz.databinding.FragmentQuizBinding
@@ -102,6 +104,7 @@ class QuizFragment : Fragment() {
         }
 
         sharedViewModel.finalAnswer.observe(viewLifecycleOwner){
+            sharedViewModel.resetForNavigation()
             findNavController().navigate(R.id.action_quizFragment_to_homeFragment)
         }
 

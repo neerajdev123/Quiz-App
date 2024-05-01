@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.appadore.quiz.data.StaticQuestionStore
 import com.appadore.quiz.model.Question
+import java.util.Calendar
+
 
 class QuizViewModel : ViewModel() {
 
@@ -32,6 +34,12 @@ class QuizViewModel : ViewModel() {
 
     private val _countDownTime = MutableLiveData("")
     val countDownTime : LiveData<String> = _countDownTime
+
+    private val _quizStartCountDown = MutableLiveData("")
+    val quizStartCountDown : LiveData<String> = _quizStartCountDown
+
+    private val _navigateToQuiz = MutableLiveData(false)
+    val navigateToQuiz : LiveData<Boolean> = _navigateToQuiz
 
     private var correctAnswers = 0
 
@@ -92,9 +100,14 @@ class QuizViewModel : ViewModel() {
         _correctAnswer.value = 0
         _finalAnswer.value = null
         _lastQuestion.value = false
+        _navigateToQuiz.value = false
 
         getQuestions()
 
+    }
+
+    fun resetForNavigation(){
+        _navigateToQuiz.value = false
     }
 
     //set countdown timer, can be done in view as well, but handling here helps in orientation change
@@ -104,6 +117,34 @@ class QuizViewModel : ViewModel() {
 
     fun stopTimer(){
         timer.cancel()
+    }
+
+    //invoked from home screen to set timer for quiz
+    fun setQuizStartTime(hour : Int, min : Int){
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, min)
+        calendar.clear(Calendar.SECOND)
+        val timeLong = calendar.timeInMillis
+        val currentTime = System.currentTimeMillis()
+        val countDownTime = timeLong - currentTime
+
+        val timer = object: CountDownTimer(countDownTime, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsValue = millisUntilFinished / 1000
+                val hours = secondsValue / 3600
+                val minutes = (secondsValue % 3600) / 60
+                val seconds = secondsValue % 60
+
+                val time = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                _quizStartCountDown.value = "Time Remaining for quiz : $time"
+            }
+
+            override fun onFinish() {
+                _navigateToQuiz.value = true
+            }
+        }
+        timer.start()
     }
 
     private fun getQuestions(){

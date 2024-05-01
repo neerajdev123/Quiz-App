@@ -6,16 +6,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.HomeFragment">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_start"
-        android:text="Start"
-        android:layout_margin="16dp"
+        android:id="@+id/txt_pick_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:text="Pick a time for the quiz"
+        android:layout_marginTop="16dp"/>
+
+    <TimePicker
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_pick_label"
+        app:layout_constraintBottom_toTopOf="@+id/btn_save"
+        android:id="@+id/tp_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:timePickerMode="spinner"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_save"
+        android:text="Save"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tp_time"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_time_remaining"
+        android:text="Time Remaining : 01 : 02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
