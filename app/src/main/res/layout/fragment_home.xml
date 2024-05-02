@@ -15,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/pick_time"
+        style="@style/Normal"
         android:layout_marginTop="@dimen/common_padding_16_dp"/>
 
     <TimePicker
@@ -45,6 +46,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txt_time_remaining"
         android:text="@string/time_remaining_placeholder"
+        style="@style/Normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -66,6 +68,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/txt_game_over"
             android:text="@string/game_over"
+            style="@style/Normal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -76,6 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txt_score"
+            style="@style/Normal"
             tools:text = "Your score is 5/5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_game_over"
