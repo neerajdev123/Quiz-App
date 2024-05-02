@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import coil.api.load
 import com.appadore.quiz.R
 import com.appadore.quiz.databinding.FragmentQuizBinding
+import com.appadore.quiz.utils.TimerTime
 import com.appadore.quiz.viewmodel.QuizViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -66,7 +67,7 @@ class QuizFragment : Fragment() {
         }
 
         sharedViewModel.questionNumber.observe(viewLifecycleOwner) {
-            val delay = if(it == 1) 0L else 5000L
+            val delay = if(it == 1) 0L else TimerTime.QUESTION_TIME_GAP
             Handler(Looper.getMainLooper()).postDelayed({
                 binding?.txtQnNo?.text = "$it / $totalQuestions"
                 sharedViewModel.startTimer()
@@ -91,7 +92,7 @@ class QuizFragment : Fragment() {
                 }
                 Handler(Looper.getMainLooper()).postDelayed({
                     sharedViewModel.getCurrentQuestion()
-                }, 5000L)
+                }, TimerTime.QUESTION_TIME_GAP)
             }
         }
 

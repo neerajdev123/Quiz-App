@@ -6,8 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.appadore.quiz.model.Question
 import com.appadore.quiz.repository.QuizRepository
+import com.appadore.quiz.utils.DateUtils
+import com.appadore.quiz.utils.TimerTime
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.Calendar
 import javax.inject.Inject
 
 @HiltViewModel
@@ -47,7 +48,7 @@ class QuizViewModel @Inject constructor(
 
     private var correctAnswers = 0
 
-    private val timer = object: CountDownTimer(30000, 1000) {
+    private val timer = object: CountDownTimer(TimerTime.QUESTION_TOTAL_TIME, 1000) {
         override fun onTick(millisUntilFinished: Long) {
             _countDownTime.value = (millisUntilFinished/1000L).toString()
         }
@@ -125,22 +126,10 @@ class QuizViewModel @Inject constructor(
 
     //invoked from home screen to set timer for quiz
     fun setQuizStartTime(hour : Int, min : Int){
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, hour)
-        calendar.set(Calendar.MINUTE, min)
-        calendar.clear(Calendar.SECOND)
-        val timeLong = calendar.timeInMillis
-        val currentTime = System.currentTimeMillis()
-        val countDownTime = timeLong - currentTime
-
+        val countDownTime = DateUtils.getChallengeTime(hour, min)
         val timer = object: CountDownTimer(countDownTime, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                val secondsValue = millisUntilFinished / 1000
-                val hours = secondsValue / 3600
-                val minutes = (secondsValue % 3600) / 60
-                val seconds = secondsValue % 60
-
-                val time = String.format("%02d:%02d:%02d", hours, minutes, seconds)
+                val time = DateUtils.getChallengeDisplayTime(millisUntilFinished)
                 _quizStartCountDown.value = "CHALLENGE WILL START IN $time"
             }
 
