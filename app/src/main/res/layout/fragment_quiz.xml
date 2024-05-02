@@ -7,11 +7,11 @@
     tools:context=".view.QuizFragment">
 
    <androidx.appcompat.widget.AppCompatImageView
-       android:layout_width="30dp"
-       android:layout_height="30dp"
+       android:layout_width="@dimen/time_icon_size"
+       android:layout_height="@dimen/time_icon_size"
        android:id="@+id/img_timer"
        android:src="@drawable/baseline_access_alarm_24"
-       android:layout_margin="32dp"
+       android:layout_margin="@dimen/common_padding_32_dp"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent"/>
 
@@ -19,8 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txt_timer"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginTop="@dimen/common_padding_32_dp"
+        android:layout_marginStart="@dimen/common_padding_4_dp"
         app:layout_constraintStart_toEndOf="@+id/img_timer"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txt_qn_no"
-        android:layout_margin="32dp"
+        android:layout_margin="@dimen/common_padding_32_dp"
         tools:text="1/15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txt_qn"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/common_padding_16_dp"
         tools:text="Identify the flag"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,9 +48,9 @@
         />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="32dp"
+        android:layout_width="@dimen/flag_size"
+        android:layout_height="@dimen/flag_size"
+        android:layout_margin="@dimen/common_padding_32_dp"
         android:id="@+id/img_flag"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,8 +64,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_flag"
         app:layout_constraintEnd_toStartOf="@+id/btn_option2"
-        android:layout_margin="32dp"
-        android:padding="4dp"/>
+        android:layout_margin="@dimen/common_padding_32_dp"
+        android:padding="@dimen/common_padding_4_dp"/>
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -75,8 +75,8 @@
         app:layout_constraintStart_toEndOf="@+id/btn_option1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_flag"
-        android:layout_margin="32dp"
-        android:padding="4dp"/>
+        android:layout_margin="@dimen/common_padding_32_dp"
+        android:padding="@dimen/common_padding_4_dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="0dp"
@@ -85,8 +85,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_option1"
         app:layout_constraintEnd_toStartOf="@+id/btn_option4"
-        android:layout_margin="32dp"
-        android:padding="4dp"/>
+        android:layout_margin="@dimen/common_padding_32_dp"
+        android:padding="@dimen/common_padding_4_dp"/>
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -96,8 +96,8 @@
         app:layout_constraintStart_toEndOf="@+id/btn_option3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_option1"
-        android:layout_margin="32dp"
-        android:padding="4dp"/>
+        android:layout_margin="@dimen/common_padding_32_dp"
+        android:padding="@dimen/common_padding_4_dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
@@ -108,7 +108,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_margin="32dp"/>
+        android:layout_margin="@dimen/common_padding_32_dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/pick_time"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="@dimen/common_padding_16_dp"/>
 
     <TimePicker
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/common_padding_12_dp"
         android:timePickerMode="spinner"/>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_save"
         android:text="@string/save"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/common_padding_16_dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tp_time"
@@ -69,7 +69,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="32dp"/>
+            android:layout_margin="@dimen/common_padding_32_dp"/>
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -80,7 +80,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_game_over"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="32dp"
+            android:layout_margin="@dimen/common_padding_32_dp"
             />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -90,7 +90,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_score"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="32dp"
+            android:layout_margin="@dimen/common_padding_32_dp"
             android:text="@string/exit"/>
 
 
