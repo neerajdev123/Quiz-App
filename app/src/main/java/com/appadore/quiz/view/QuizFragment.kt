@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import coil.api.load
 import com.appadore.quiz.R
 import com.appadore.quiz.databinding.FragmentQuizBinding
+import com.appadore.quiz.extensions.show
 import com.appadore.quiz.utils.TimerTime
 import com.appadore.quiz.viewmodel.QuizViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -102,7 +103,7 @@ class QuizFragment : Fragment() {
 
         sharedViewModel.lastQuestion.observe(viewLifecycleOwner){
             if(it){
-                binding?.btnSubmit?.visibility = View.VISIBLE
+                binding?.btnSubmit?.show(true)
             }
         }
 

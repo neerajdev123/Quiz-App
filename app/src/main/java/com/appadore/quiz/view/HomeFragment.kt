@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.appadore.quiz.R
 import com.appadore.quiz.databinding.FragmentHomeBinding
+import com.appadore.quiz.extensions.show
 import com.appadore.quiz.viewmodel.QuizViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,40 +38,40 @@ class HomeFragment : Fragment() {
             val hour = binding?.tpTime?.hour
             val min = binding?.tpTime?.minute
             sharedViewModel.setQuizStartTime(hour!!, min!!)
-            binding?.btnSave?.visibility = View.GONE
-            binding?.layoutScore?.visibility = View.GONE
-            binding?.txtPickLabel?.visibility = View.GONE
-            binding?.tpTime?.visibility = View.GONE
+            binding?.btnSave?.show(false)
+            binding?.layoutScore?.show(false)
+            binding?.txtPickLabel?.show(false)
+            binding?.tpTime?.show(false)
         }
 
         sharedViewModel.navigateToQuiz.observe(viewLifecycleOwner){
             if(it) {
-                binding?.layoutScore?.visibility = View.GONE
-                binding?.btnSave?.visibility = View.GONE
-                binding?.txtPickLabel?.visibility = View.GONE
-                binding?.tpTime?.visibility = View.GONE
+                binding?.layoutScore?.show(false)
+                binding?.btnSave?.show(false)
+                binding?.txtPickLabel?.show(false)
+                binding?.tpTime?.show(false)
                 this.findNavController().navigate(R.id.action_homeFragment_to_quizFragment)
             }
         }
 
         sharedViewModel.quizStartCountDown.observe(viewLifecycleOwner){
-            binding?.txtTimeRemaining?.visibility = View.VISIBLE
+            binding?.txtTimeRemaining?.show(true)
             binding?.txtTimeRemaining?.text = it
         }
 
         sharedViewModel.finalAnswer.observe(viewLifecycleOwner){
             if(it != null){
-                binding?.layoutScore?.visibility = View.VISIBLE
-                binding?.btnSave?.visibility = View.GONE
-                binding?.txtPickLabel?.visibility = View.GONE
-                binding?.tpTime?.visibility = View.GONE
-                binding?.txtTimeRemaining?.visibility = View.GONE
+                binding?.layoutScore?.show(true)
+                binding?.btnSave?.show(false)
+                binding?.txtPickLabel?.show(false)
+                binding?.tpTime?.show(false)
+                binding?.txtTimeRemaining?.show(false)
                 binding?.txtScore?.text = it
             }else{
-                binding?.btnSave?.visibility = View.VISIBLE
-                binding?.txtPickLabel?.visibility = View.VISIBLE
-                binding?.tpTime?.visibility = View.VISIBLE
-                binding?.layoutScore?.visibility = View.GONE
+                binding?.btnSave?.show(true)
+                binding?.txtPickLabel?.show(true)
+                binding?.tpTime?.show(true)
+                binding?.layoutScore?.show(false)
             }
         }
 
