@@ -141,7 +141,7 @@ class QuizViewModel @Inject constructor(
                 val seconds = secondsValue % 60
 
                 val time = String.format("%02d:%02d:%02d", hours, minutes, seconds)
-                _quizStartCountDown.value = "Time Remaining for quiz : $time"
+                _quizStartCountDown.value = "CHALLENGE WILL START IN $time"
             }
 
             override fun onFinish() {

@@ -2,4 +2,10 @@
     <string name="app_name">Flags Challenge</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pick_time">Pick a time for the quiz</string>
+    <string name="save">Save</string>
+    <string name="time_remaining_placeholder">Time Remaining : 01 : 02</string>
+    <string name="game_over">GAME OVER !!!</string>
+    <string name="exit">Exit</string>
+    <string name="submit">Submit</string>
 </resources>
