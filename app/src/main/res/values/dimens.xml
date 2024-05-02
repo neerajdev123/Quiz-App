@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <dimen name="common_padding_2_dp">2dp</dimen>
+    <dimen name="common_padding_4_dp">4dp</dimen>
+    <dimen name="common_padding_8_dp">8dp</dimen>
+    <dimen name="common_padding_16_dp">16dp</dimen>
+    <dimen name="common_padding_12_dp">12dp</dimen>
+    <dimen name="common_padding_24_dp">24dp</dimen>
+    <dimen name="common_padding_32_dp">32dp</dimen>
+    <dimen name="time_icon_size">30dp</dimen>
+    <dimen name="flag_size">100dp</dimen>
+</resources>

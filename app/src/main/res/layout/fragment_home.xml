@@ -14,8 +14,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Pick a time for the quiz"
-        android:layout_marginTop="16dp"/>
+        android:text="@string/pick_time"
+        style="@style/Normal"
+        android:layout_marginTop="@dimen/common_padding_16_dp"/>
 
     <TimePicker
         app:layout_constraintStart_toStartOf="parent"
@@ -26,15 +27,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/common_padding_12_dp"
         android:timePickerMode="spinner"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_save"
-        android:text="Save"
-        android:layout_margin="16dp"
+        android:text="@string/save"
+        android:layout_margin="@dimen/common_padding_16_dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tp_time"
@@ -44,7 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txt_time_remaining"
-        android:text="Time Remaining : 01 : 02"
+        android:text="@string/time_remaining_placeholder"
+        style="@style/Normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -62,14 +64,27 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_game_over"
+            android:text="@string/game_over"
+            style="@style/Normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/common_padding_32_dp"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txt_score"
+            style="@style/Normal"
             tools:text = "Your score is 5/5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_game_over"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="32dp"
+            android:layout_margin="@dimen/common_padding_32_dp"
             />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -79,8 +94,8 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_score"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_margin="32dp"
-            android:text="Exit"/>
+            android:layout_margin="@dimen/common_padding_32_dp"
+            android:text="@string/exit"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

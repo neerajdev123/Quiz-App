@@ -3,18 +3,19 @@ package com.appadore.quiz.view
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import coil.api.load
 import com.appadore.quiz.R
 import com.appadore.quiz.databinding.FragmentQuizBinding
+import com.appadore.quiz.extensions.show
+import com.appadore.quiz.utils.TimerTime
 import com.appadore.quiz.viewmodel.QuizViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -52,6 +53,7 @@ class QuizFragment : Fragment() {
         sharedViewModel.currentQuestion.observe(viewLifecycleOwner) {
             binding?.apply {
                 this.txtQn.text = it?.question
+                this.imgFlag.load("https://flagsapi.com/${it?.countryCode}/flat/64.png")
 
                 handleOptionBg(1, -1)
                 handleOptionBg(2, -1)
@@ -66,7 +68,7 @@ class QuizFragment : Fragment() {
         }
 
         sharedViewModel.questionNumber.observe(viewLifecycleOwner) {
-            val delay = if(it == 1) 0L else 5000L
+            val delay = if(it == 1) 0L else TimerTime.QUESTION_TIME_GAP
             Handler(Looper.getMainLooper()).postDelayed({
                 binding?.txtQnNo?.text = "$it / $totalQuestions"
                 sharedViewModel.startTimer()
@@ -91,7 +93,7 @@ class QuizFragment : Fragment() {
                 }
                 Handler(Looper.getMainLooper()).postDelayed({
                     sharedViewModel.getCurrentQuestion()
-                }, 5000L)
+                }, TimerTime.QUESTION_TIME_GAP)
             }
         }
 
@@ -101,7 +103,7 @@ class QuizFragment : Fragment() {
 
         sharedViewModel.lastQuestion.observe(viewLifecycleOwner){
             if(it){
-                binding?.btnSubmit?.visibility = View.VISIBLE
+                binding?.btnSubmit?.show(true)
             }
         }
 
